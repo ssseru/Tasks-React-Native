@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const RenderListItem = (props) => {
   return (
-    <TouchableOpacity onPress={props.removeTask.bind(this, props.id)}>
+    // <TouchableOpacity onPress={props.removeTask.bind(this, props.id)}>
+    <TouchableOpacity onPress={() => props.removeTask(props.id)}>
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
       </View>
