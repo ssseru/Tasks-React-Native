@@ -8,6 +8,7 @@ import {
   Button,
   FlatList,
 } from "react-native";
+import RenderListItem from "./components/renderListItem";
 
 export default function App() {
   const [currentTask, setCurrentTask] = useState("");
@@ -36,11 +37,10 @@ export default function App() {
         <Button title="ADD" onPress={buttonOnPress} />
       </View>
       <FlatList
+        keyExtractor={(item, index) => item.id}
         data={taskList}
         renderItem={(itemData) => (
-          <View>
-            <Text>{itemData.item.value}</Text>
-          </View>
+          <RenderListItem title={itemData.item.value} />
         )}
       />
     </View>
@@ -59,9 +59,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: "80%",
-  },
-  listItems: {
-    flexDirection: "column",
-    alignItems: "center",
   },
 });
