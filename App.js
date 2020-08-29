@@ -25,6 +25,12 @@ export default function App() {
     setCurrentTask(enteredText);
   };
 
+  const removeTask = (goalId) => {
+    setTaskList((currentTasks) => {
+      return taskList.filter((task) => task.id !== goalId);
+    });
+  };
+
   return (
     <View style={styles.root}>
       <View style={styles.inputContainer}>
@@ -40,7 +46,11 @@ export default function App() {
         keyExtractor={(item, index) => item.id}
         data={taskList}
         renderItem={(itemData) => (
-          <RenderListItem title={itemData.item.value} />
+          <RenderListItem
+            id={itemData.item.id}
+            title={itemData.item.value}
+            removeTask={removeTask}
+          />
         )}
       />
     </View>
